@@ -255,6 +255,7 @@ h1 {
     cursor:pointer;
 }
 .pizzaInfo--cancelMobileButton {
+    cursor: pointer;
     display:none;
     height:40px;
     text-align:center;
@@ -347,7 +348,7 @@ h1 {
         max-width:100%;
     }
     header {
-        display:none;
+        display:flex
     }
     main {
         padding-top:60px;
