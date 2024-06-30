@@ -68,3 +68,10 @@ DQS(".pizzaInfo--qtmais").addEventListener("click", () => {
   modalQT++;
   DQS(".pizzaInfo--qt").innerHTML = modalQT;
 });
+
+DQSA(".pizzaInfo--size").forEach((size, sizeIndex) => {
+  size.addEventListener("click", () => {
+    DQS(".pizzaInfo--size.selected").classList.remove("selected");
+    size.classList.add("selected");
+  });
+});
