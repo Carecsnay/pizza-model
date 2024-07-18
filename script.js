@@ -1,4 +1,6 @@
 let modalQT = 1;
+let cart = [];
+let modalKey = 0;
 
 //Função da priguicite aguda.
 const DQS = (el) => document.querySelector(el);
@@ -6,7 +8,6 @@ const DQSA = (el) => document.querySelectorAll(el);
 
 pizzaJson.map((item, index) => {
   let pizzaItem = DQS(".models .pizza-item").cloneNode(true);
-
   pizzaItem.setAttribute("data-key", index);
   pizzaItem.querySelector(".pizza-item--img img").src = item.img;
   pizzaItem.querySelector(
@@ -16,10 +17,12 @@ pizzaJson.map((item, index) => {
   })}`;
   pizzaItem.querySelector(".pizza-item--name").innerHTML = item.name;
   pizzaItem.querySelector(".pizza-item--desc").innerHTML = item.description;
+
   pizzaItem.querySelector("a").addEventListener("click", (e) => {
-    let key = e.target.closest(".pizza-item").getAttribute("data-key");
     e.preventDefault();
     modalQT = 1;
+    let key = e.target.closest(".pizza-item").getAttribute("data-key");
+    modalKey = key;
 
     DQS(".pizzaBig img").src = pizzaJson[key].img;
     DQS(".pizzaInfo h1").innerHTML = pizzaJson[key].name;
@@ -74,4 +77,17 @@ DQSA(".pizzaInfo--size").forEach((size, sizeIndex) => {
     DQS(".pizzaInfo--size.selected").classList.remove("selected");
     size.classList.add("selected");
   });
+});
+
+DQS(".pizzaInfo--addButton").addEventListener("click", () => {
+  let size = parseInt(
+    DQS(".pizzaInfo--size.selected").getAttribute("data-key")
+  );
+
+  cart.push({
+    id: pizzaJson[modalKey].id,
+    size,
+    qt: modalQT,
+  });
+  closeModal();
 });
