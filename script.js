@@ -97,6 +97,6 @@ DQS(".pizzaInfo--addButton").addEventListener("click", () => {
       size,
       qt: modalQT,
     });
-    closeModal();
   }
+  closeModal();
 });
