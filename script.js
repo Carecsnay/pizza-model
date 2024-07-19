@@ -128,6 +128,7 @@ const updateCart = () => {
 
       cartItem.querySelector("img").src = pizzaItem.img;
       cartItem.querySelector(".cart--item-nome").innerHTML = pizzaName;
+      cartItem.querySelector(".cart--item--qt").innerHTML = cart[i].qt;
       DQS(".cart").append(cartItem);
     }
   } else {
