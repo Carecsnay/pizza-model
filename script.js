@@ -83,9 +83,7 @@ DQS(".pizzaInfo--addButton").addEventListener("click", () => {
   let size = parseInt(
     DQS(".pizzaInfo--size.selected").getAttribute("data-key")
   );
-
   let identifier = pizzaJson[modalKey].id + "@" + size;
-
   let key = cart.findIndex((item) => item.identifier == identifier);
 
   if (key > -1) {
@@ -98,5 +96,17 @@ DQS(".pizzaInfo--addButton").addEventListener("click", () => {
       qt: modalQT,
     });
   }
+  updateCart();
   closeModal();
 });
+
+const updateCart = () => {
+  if (cart.length > 0) {
+    DQS("aside").classList.add("show");
+    for (let i in cart) {
+      let pizzaItem = pizzaJson.find((item) => item.id == cart[i].id);
+    }
+  } else {
+    DQS("aside").classList.remove("show");
+  }
+};
