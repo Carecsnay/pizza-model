@@ -103,11 +103,16 @@ DQS(".pizzaInfo--addButton").addEventListener("click", () => {
 const updateCart = () => {
   if (cart.length > 0) {
     DQS("aside").classList.add("show");
-
     DQS(".cart").innerHTML = "";
+
+    let subtotal = 0;
+    let discount = 0;
+    let total = 0;
 
     for (let i in cart) {
       let pizzaItem = pizzaJson.find((item) => item.id == cart[i].id);
+      subtotal += pizzaItem.price * cart[i].qt; //calculo subtotal
+
       let cartItem = DQS(".models .cart--item").cloneNode(true);
       let pizzaSizeName;
       switch (cart[i].size) {
@@ -129,8 +134,32 @@ const updateCart = () => {
       cartItem.querySelector("img").src = pizzaItem.img;
       cartItem.querySelector(".cart--item-nome").innerHTML = pizzaName;
       cartItem.querySelector(".cart--item--qt").innerHTML = cart[i].qt;
+      cartItem
+        .querySelector(".cart--item-qtmenos")
+        .addEventListener("click", () => {
+          if (cart[i].qt > 1) {
+            cart[i].qt--;
+          } else {
+            cart.splice(i, 1); //remover item com qtd zero
+          }
+          updateCart();
+        });
+      cartItem
+        .querySelector(".cart--item-qtmais")
+        .addEventListener("click", () => {
+          cart[i].qt++;
+          updateCart();
+        });
+
       DQS(".cart").append(cartItem);
     }
+
+    discount = subtotal * 0.1; //10% de desconto
+    total = subtotal - discount;
+
+    DQS(".subtotal span:last-child").innerHTML = `R$ ${subtotal.toFixed(2)}`;
+    DQS(".desconto span:last-child").innerHTML = `R$ ${discount.toFixed(2)}`;
+    DQS(".total span:last-child").innerHTML = `R$ ${total.toFixed(2)}`;
   } else {
     DQS("aside").classList.remove("show");
   }
