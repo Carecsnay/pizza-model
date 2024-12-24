@@ -23,7 +23,7 @@ Confira o projeto em funcionamento clicando no link abaixo:
 - **Finalização da compra**: Exibe o resumo de todos os itens e o total a pagar, com a possibilidade de finalizar a compra.
 
 ## Estrutura do Projeto
-
+```
 .
 ├── index.html         # Arquivo principal HTML
 ├── style.css          # Arquivo de estilos
@@ -38,7 +38,7 @@ Confira o projeto em funcionamento clicando no link abaixo:
 │   └── pizza6.png
 │   └── pizza7.png
 └── favicon.png        # Ícone do site
-
+```
 
 ## Personalização
 
